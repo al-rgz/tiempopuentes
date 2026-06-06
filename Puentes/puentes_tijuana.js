@@ -1,0 +1,248 @@
+// Front-end
+async function getCountriesAndDisplay() {
+
+const main = document.getElementById('container');
+
+    try {
+        const response = await fetch('https://corsproxy.io/?https://bwt.cbp.gov/api/waittimes'); // ✅ Use your local proxy URL
+        
+        if (!response.ok) {
+            throw new Error('Error de red: ' + response.statusText);
+        }
+        
+        const data = await response.json();
+
+        
+
+        const traducciones = {
+         "San Ysidro": "Puete Tijuana",
+         "Cross Border Express": "Aeropuerto Tijuana",
+         "PedWest": "Puente Tijuana II"       
+               };
+
+
+               const linksSur = {
+         "San Ysidro": "Dirección: Vía de la Juventud Oriente s/n, Federal, 22000 Tijuana, B.C.La entrada principal es a través de la Vía Rápida Oriente. No hay una calle con número específico para la fila. Cómo llegar: Debes tomar la Vía Rápida y seguir los señalamientos que dividen los carriles en Ready Lane, All Traffic (General) o SENTRI.",
+         "Cross Border Express": "Dirección: Carretera Aeropuerto S/N, Nueva Tijuana, 22435 Tijuana, B.C. Uso: Cruce directo del Aeropuerto de Tijuana hacia una terminal privada en San Diego. Este es un puente peatonal exclusivo para pasajeros del Aeropuerto de Tijuana. No puedes cruzar por aquí si no tienes un pase de abordar. Carretera Aeropuerto S/N, Nueva Tijuana (conectado directamente a la terminal aérea).",
+         "PedWest": "Dirección: Vía de la Juventud Oriente s/n, Federal, 22000 Tijuana, B.C. Peatones (PedWest): Cerca de la plaza comercial Plaza Las Américas. Dirección: Lado oeste de El Chaparral (horarios actuales de 6:00 a.m. a 2:00 p.m., sujetos a cambios).",
+               };
+
+               const linksNorte = {
+         "Bridge of the Americas (BOTA)": "",
+         "Paso Del Norte (PDN)": "",
+         "Ysleta": "",
+         "Santa Teresa": ""
+               };
+
+        const ElPasoBorders = data.filter(port => port.port_name === 'San Ysidro');
+        const pasoNorte = data.find(port => port.crossing_name =='Paso Del Norte (PDN)');
+
+
+        //console.log(ElPasoBorders);
+       // console.log(stanton);
+        //console.log(data);
+
+        const actualizacion = pasoNorte?.passenger_vehicle_lanes?.standard_lanes?.update_time;
+        const horaLimpia = actualizacion?.slice(3, -4);
+
+        //console.log(horaLimpia);
+
+         
+         ElPasoBorders.forEach (port => {
+
+            //Display video puente
+             const display = document.getElementById('display_video');             
+             
+
+             //Contenedor puentes
+             
+          const contenedor_puente=  document.createElement('div');
+          contenedor_puente.classList.add('contenedor_puentes');
+
+          //Titulo del puente
+
+          const titulo =document.createElement('div');
+          titulo.classList.add ('titulo');
+
+          //Contenedor donde va la imagen del carro y los datos del tiempo de cruce
+          //y lineas abiertas
+
+          const contenedorPuentes = document.createElement ('div');
+          contenedorPuentes.classList.add('contenedor_puentes_info');
+          contenedorPuentes.id = 'contenedor_puentes_info'
+
+          //Hora del dia
+          setInterval( ()=> {
+            const horaDisplay = document.getElementById('hora');
+
+           const hora = new Date();
+          const horaFormat = hora.toLocaleString('en-EN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+
+          horaDisplay.innerText= `Hora: ${horaFormat}`;
+
+          },1000)
+          
+
+          //contenedor donde va el boton para abrir el contenedor 
+          // donde va el video youtube detials
+
+          const displayDiv= document.createElement('div');
+          displayDiv.classList.add('boton_camara');
+          displayDiv.innerHTML= ` <img src='/assets/car.png' class='logo3'>Camara</img>`
+                  
+          displayDiv.addEventListener('click', (e) =>{ 
+              display.classList.toggle('hidden'); 
+
+              display.innerHTML= `
+              
+          <div id='boton_cerrar_display'>
+                 <h2>Camara en vivo</h2><hr>
+                 <p class='hora' id='hora'></p>
+                 <p class='boton_cerrar_display' id='boton_cerrar_display'>X</p>
+
+            </div> 
+               <p> ${videoSur} </p>`;
+
+                const cerrar_display_boton = document.getElementById('boton_cerrar_display');
+                cerrar_display_boton.addEventListener('click', (e)=> {
+                   display.classList.toggle('hidden');
+                });
+
+              });
+          
+          
+
+          const portName = port?.crossing_name || 'San Ysidro'; 
+           const puenteEspaniol = traducciones[portName];
+           const videoSur =linksSur[portName];
+           const videoNorte =linksNorte[portName];
+
+          const pedestrianDelay = port?.pedestrian_lanes?.standard_lanes?.delay_minutes || '0';
+          const pedestrianLanes = port?.pedestrian_lanes?.standard_lanes?.lanes_open || '0';
+
+          
+          const carDelay = port?.passenger_vehicle_lanes?.standard_lanes?.delay_minutes || '0';       
+          const carLanes = port?.passenger_vehicle_lanes?.standard_lanes?.lanes_open || '0';
+             
+           const carLanesFormat = parseFloat(carLanes);
+           const carDelayFormat = parseFloat(carDelay);
+          
+          //Ready Lane
+
+          const readylanes = port?.passenger_vehicle_lanes?.ready_lanes?.lanes_open || '0';
+          const readylane_delay=port?.passenger_vehicle_lanes?.ready_lanes?.delay_minutes || '0';
+
+           const readylanesFormat = parseFloat(readylanes);
+           const readyLaneDelayFormat = parseFloat (readylane_delay);
+           
+          //Sentry lane
+
+          const sentryLanes = port?.passenger_vehicle_lanes?.NEXUS_SENTRI_lanes?.lanes_open || '0';
+          const sentrylanes_delay = port?.passenger_vehicle_lanes?.NEXUS_SENTRI_lanes?.delay_minutes || '0';
+
+          //Regular lanes + ready lanes
+
+          const totalLanes = carLanesFormat + readylanesFormat;
+          const totalDelay = (carDelayFormat + readyLaneDelayFormat)/2;
+
+          //Suma del delay de las lineas regulares y las ready lanes
+
+          const totalDelayFortmat = Math.floor(totalDelay);
+
+          //Actualizacion de informacion de puentes
+           //const actualizacion = 
+
+          
+
+          titulo.innerHTML = 
+          `<div>
+          <p class='nombre_puente'> ${puenteEspaniol} </p> 
+          <small> ${portName}</small>
+          </div>
+
+        
+          <br><br></br>`;
+
+          contenedorPuentes.innerHTML =
+           `
+         <div class='informacion'>
+
+            <img src='assets/3d-car.png' class='icono'> 
+            <div class='letras'>
+            <p>${totalDelayFortmat} min  
+            <p class='lineas_abiertas'>Lineas abiertas : ${totalLanes}</p> 
+            </div>
+
+        </div>
+
+              
+              
+
+        <div class='informacion'>
+
+              <img src='assets/Sentri_logo.svg.png' class='icono'> 
+              <div class='letras'>
+              <p>${sentrylanes_delay} min  
+              <p class='lineas_abiertas'>Lineas abiertas : ${sentryLanes}</p>
+              </div>
+
+        </div> 
+
+            
+
+        <div class='informacion'>
+
+            
+             <img class='logo4' src='assets/walk.png'> 
+             <div class='letras'>
+             <p> ${pedestrianDelay} min </p>
+             <p class='lineas_abiertas'>  Lineas abiertas : ${pedestrianLanes}</p> 
+             </div> 
+
+        </div>
+          `; 
+
+           
+      
+           titulo.append(displayDiv);
+          contenedor_puente.append(titulo);      
+          contenedor_puente.append(contenedorPuentes);   
+          main.append(contenedor_puente);
+
+          
+
+
+         });
+
+      
+         //Hora de actualizacion de la infomacion delos puentes
+        const reloj = document.getElementById('reloj');
+        reloj.innerHTML = `(Ultima actualización: ${horaLimpia})`;
+
+        
+        
+
+        
+
+    } catch (error) {
+        console.error('Hubo un problema:', error);
+        
+        main.innerHTML = 'No se pudieron cargar los datos de los países.';
+    }
+}
+
+getCountriesAndDisplay();
+
+//Funcion para mostar la fecha del dia
+
+const fechaDia = new Date ();
+
+const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
+let fechaTexto = fechaDia.toLocaleDateString('es-ES',opciones);
+
+fechaTexto = fechaTexto.charAt(0).toUpperCase() + fechaTexto.slice(1);
+
+const fecha = document.getElementById('fecha');
+fecha.innerText = fechaTexto;
+
