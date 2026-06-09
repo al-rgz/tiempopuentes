@@ -4,7 +4,7 @@ async function getCountriesAndDisplay() {
 const main = document.getElementById('container');
 
     try {
-        const response = await fetch('/api/fetch_puentes'); //Fetch carpeta api
+        const response = await fetch('/api/fetch_puentes'); // ✅ 
         
         if (!response.ok) {
             throw new Error('Error de red: ' + response.statusText);
@@ -17,7 +17,9 @@ const main = document.getElementById('container');
         const traducciones = {
          "San Ysidro": "Puete Tijuana",
          "Cross Border Express": "Aeropuerto Tijuana",
-         "PedWest": "Puente Tijuana II"       
+         "PedWest": "Puente Tijuana II",
+         "Ysleta": "Puente Zaragoza",
+         "Santa Teresa": "Puente San Jeronimo"
                };
 
 
@@ -35,18 +37,17 @@ const main = document.getElementById('container');
                };
 
         const ElPasoBorders = data.filter(port => port.port_name === 'San Ysidro');
-        const pasoNorte = data.find(port => port.crossing_name =='Paso Del Norte (PDN)');
+        const stanton = data.find(port => port.crossing_name =='Paso Del Norte (PDN)');
 
 
         //console.log(ElPasoBorders);
-       // console.log(stanton);
-        //console.log(data);
+        //console.log(stanton);
+        
 
-        const actualizacion = pasoNorte?.passenger_vehicle_lanes?.standard_lanes?.update_time;
+        const actualizacion = stanton?.passenger_vehicle_lanes?.standard_lanes?.update_time || 'Esperando actualización';
         const horaLimpia = actualizacion?.slice(3, -4);
 
-        //console.log(horaLimpia);
-
+         //console.log(actualizacion);
          
          ElPasoBorders.forEach (port => {
 
@@ -88,24 +89,41 @@ const main = document.getElementById('container');
 
           const displayDiv= document.createElement('div');
           displayDiv.classList.add('boton_camara');
-          displayDiv.innerHTML= ` <img src='/assets/car.png' class='logo3'>Camara</img>`
+          displayDiv.innerHTML= ` <img src="/assets/car.png" class='logo3'>Info</img>`
                   
           displayDiv.addEventListener('click', (e) =>{ 
+              
+               const blur_bg = document.querySelector('main');
+              
+              
+              const rect = e.currentTarget.getBoundingClientRect();
+              
+           // Esto posiciona el modal justo debajo del botón que clickeaste
+           // sumando window.scrollY para que funcione aunque hayas hecho scroll
+    
+              display.style.top = `${rect.top + window.scrollY + 40}px`;
+           
               display.classList.toggle('hidden'); 
+              blur_bg.classList.toggle('show');
+              
+              
 
               display.innerHTML= `
               
           <div id='boton_cerrar_display'>
-                 <h2>Camara en vivo</h2><hr>
+                 <h2>Información</h2><hr>
                  <p class='hora' id='hora'></p>
                  <p class='boton_cerrar_display' id='boton_cerrar_display'>X</p>
 
             </div> 
-               <p> ${videoSur} </p>`;
+               <p>${videoSur}</p>`;
 
                 const cerrar_display_boton = document.getElementById('boton_cerrar_display');
                 cerrar_display_boton.addEventListener('click', (e)=> {
+                    
                    display.classList.toggle('hidden');
+                   blur_bg.classList.toggle('show');
+                  
                 });
 
               });
@@ -167,7 +185,7 @@ const main = document.getElementById('container');
            `
          <div class='informacion'>
 
-            <img src='assets/3d-car.png' class='icono'> 
+            <img src="/assets/3d-car.png" class='icono'> 
             <div class='letras'>
             <p>${totalDelayFortmat} min  
             <p class='lineas_abiertas'>Lineas abiertas : ${totalLanes}</p> 
@@ -180,7 +198,7 @@ const main = document.getElementById('container');
 
         <div class='informacion'>
 
-              <img src='assets/Sentri_logo.svg.png' class='icono'> 
+              <img src="/assets/Sentri_logo.svg.png" class='icono'> 
               <div class='letras'>
               <p>${sentrylanes_delay} min  
               <p class='lineas_abiertas'>Lineas abiertas : ${sentryLanes}</p>
@@ -193,7 +211,7 @@ const main = document.getElementById('container');
         <div class='informacion'>
 
             
-             <img class='logo4' src='assets/walk.png'> 
+             <img class='logo4' src="/assets/walk.png"> 
              <div class='letras'>
              <p> ${pedestrianDelay} min </p>
              <p class='lineas_abiertas'>  Lineas abiertas : ${pedestrianLanes}</p> 
@@ -216,8 +234,8 @@ const main = document.getElementById('container');
 
       
          //Hora de actualizacion de la infomacion delos puentes
-        const reloj = document.getElementById('reloj');
-        reloj.innerHTML = `(Ultima actualización: ${horaLimpia})`;
+       /* const reloj = document.getElementById('reloj');
+        reloj.innerHTML = `(Ultima actualización: ${horaLimpia})`;*/
 
         
         

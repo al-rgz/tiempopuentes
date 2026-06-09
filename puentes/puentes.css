@@ -1,18 +1,17 @@
+
+
 body {
+    width: 100%;
 background:linear-gradient(rgb(233, 238, 219) , rgb(255, 255, 255));
 box-sizing: border-box;
-
+margin: 0;
+padding: 0;
 font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
+ 
  opacity: 1;
  transition: all ease-in 300ms;
  
-}
-
-.app_wrapper{
-
-width: 100%;
 
 }
 
@@ -23,9 +22,7 @@ margin-top: 15px;
 }
 
 main{
-    
 margin-left: 200px;
-width: 1050px;
 }
 
 .logo{
@@ -45,7 +42,7 @@ padding-left: 20px;
 .ciudad {
 display: flex;
 gap: 10px;
-width: 94%;
+width: 890px;
 padding-left: 10px;
 margin-left: 20px;
 
@@ -57,7 +54,7 @@ border-radius: 15px;
 
 .documentos{
  background:linear-gradient(rgb(54, 54, 215),rgb(49, 100, 239));
-width: 90%;
+width: 850px;
 display: flex;
 gap: 15px;
 justify-content: center;
@@ -77,6 +74,7 @@ gap: 40px;
 
 
 
+
 ul li a:active{
 color: aqua;
 
@@ -89,7 +87,7 @@ border-radius: 15px;
 }
 
 header{
-width:95%;
+width: 900px;
 background:linear-gradient(rgb(54, 54, 215),rgb(49, 100, 239));
 border-radius: 15px;
 margin-bottom: 10px;
@@ -106,6 +104,7 @@ width: auto;
 }
 
 #container{
+    width: 100%;
     min-width: 500px;
 display: flex;
 flex-direction: column;
@@ -117,7 +116,7 @@ max-width: 500px;
 
 }
 .contenedor_puentes{
-width: 980px;   
+width: 200%;   
 display: flex;
 flex-direction: column;
 position: relative;
@@ -170,6 +169,12 @@ top: 50px;
 .nombre_puente{
 font-weight: bolder;
 }
+
+nav{
+    width:100% ;
+    
+}
+
 
 nav ul{
 display: flex;
@@ -247,9 +252,9 @@ min-width: 100px;
 
 .lineas_abiertas{
     position: relative;
-    top: -30px
-
-;}
+    top: -30px;
+    
+}
 
 .lineas_abiertas2{
 position: relative;
@@ -279,15 +284,16 @@ width: 20px;
 }
 
 .display {
-    width: 66.8%;
+    width: 53.78%;
+    
     
     position: absolute;
-    top: 700px;
-    left: 15%;
+    top: 75%;
+    left: 20%;
     z-index: 1;
     background-color: rgb(234, 222, 222);
     border-radius: 20px;
-    z-index: 1;
+    
 }
 
 .hidden{
@@ -297,7 +303,7 @@ width: 20px;
 
 .show{
 background-color: rgb(88, 156, 224);
-filter: blur(2px);
+filter: blur(10px);
 transition: all ease-in 170ms;
 }
 
@@ -312,25 +318,28 @@ justify-content: space-between;
 }
 
  .boton_cerrar_display{
-margin-right: 20px;
+margin-right: 10px;
 margin-top: 25px;
+padding-left: 10px;
 font-size: 20px;
 cursor: pointer;
-background: rgb(151, 143, 143);
+background: rgb(243, 145, 145);
 border-radius: 5px;
-width: 15px;
+width: 25px;
+height: 25px;
 align-items: center;
 font-weight: bolder;
 
 }
 
-.boton_cerrar_display:hover{
+.boton_cerrar_display:hover {
 background: rgb(84, 81, 81);
 transition: all ease 200ms;
 }
 
 
 #fecha_container{
+width:100%;
  height: 40px;
 background-color: rgb(44, 49, 44);
 color:white;
@@ -346,10 +355,13 @@ top: -7px;
 font-size: 17px;
 }
 
-.hora{   
-     color: rgb(49, 46, 46);
+.hora{
+    width: 40%;
+color: rgb(49, 46, 46);
 margin-top: 26px;
-margin-right: 80px;
+margin-left: 10px;
+
+
 }
 
 .calendar{
@@ -359,6 +371,7 @@ padding-top: 5px;
 }
 
 footer{
+    width:100%;
     display: flex;
     gap: 30px;
     
@@ -373,128 +386,12 @@ width: 50px;
 height: 50px;
 }
 
-#comentarios_seccion{
-
-    width: 1008px;
-    margin-left: 220px;
-background-color: rgb(202, 232, 113);
-border-radius: 15px;
-}
-
-ul{
-list-style: none;
-}
-
-#comentarios_seccion li{
-background-color: antiquewhite;
-border-radius: 20px;
-width: 950px;
-margin-left: -10px;
-}
 
 
 
 
 
-#form{
-    position: relative;
-background-color: rgba(233, 234, 228, 0.985);
-display: flex;
-flex-direction: column;
-flex-wrap: wrap;
-width: 90%;
-height: auto;
-border-radius: 5px;
-color: rgba(25, 24, 24, 0.9);
-font-weight: bolder;
-margin: 10px;
-padding: 20px;
-padding-bottom: 50px;
-box-shadow: rgb(68, 67, 67) 4px 5px 5px;
-
-}
-
-#form input,textarea{
-border-radius: 20px; 
-}
-
-.radios{
-margin-top: 20px;
-margin-bottom: 10px;
-
-}
-.radios input {
-    display: none;
-
-
-}
-
-.radios input:checked + label{
-background-color: rgb(98, 235, 119);
-box-shadow: rgba(77, 75, 75, 0.929) 4px 2px;
-}
-
-.radios label{
-border: solid rgb(243, 244, 247) ;
-border-radius: 15px;
-padding: 3px;
-box-shadow: rgb(188, 177, 177) 2px 2px;
-}
-
-.radios label:active{
-color: rgb(41, 43, 42);
-background-color: rgb(206, 196, 196);
-box-shadow: black 1px 1px;
-}
-
-#form button{
-border: solid rgb(243, 244, 247) ;
-border-radius: 15px;
-padding: 3px;
-box-shadow: rgb(188, 177, 177) 2px 2px;
-margin-top: 10px;
-}
-
-#form button:hover {
-background-color: rgb(52, 153, 242);
-}
-
-#form button:active {
-box-shadow: rgba(77, 75, 75, 0.929) 4px 2px;
-}
-
-#form textarea:active{
-padding-left: 10px;
-
-}
-
-#form textarea::placeholder{
-padding-left: 6px;
-}
-
-.avatar{
-width: 40px;
-
-}
-
-#comentarios{
-
-position: relative;
-}
-
-.usuario_container{
-position: relative;
-display: flex;
-
-}
-
-.usuario{
-   position: absolute;
-   left: 42px;
-}
-
-
-@media screen and (max-width: 800px) {
+@media screen and (min-width: 801px) and (max-width: 1250px){
 
  body{
     
@@ -503,28 +400,18 @@ background:linear-gradient(rgb(177, 232, 26) , rgb(225, 139, 54));
 
 }
 
-
-.app_wrapper{
-
-width: 100%;
-
-}
+nav{
+    width:100%;
+    
+} 
 
 main{
-margin-left: -21px;
-width: 100%;
+margin-left: 0px;
 }
-
-
 
 header{
-width: 100%;
-
-
-}
-
-nav{
-width: 100%;
+    
+    width: 89.5%;
 }
 
 nav ul {
@@ -534,7 +421,7 @@ height: 60px;
 .ciudad{
 display: flex;
 flex-direction: column;
-width: 90%;
+width: 87.7%;
 
 }
 
@@ -555,9 +442,8 @@ gap: 2px;
 .contenedor_puentes{
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 700px;
     height: 500px;
-    
 
 }
 
@@ -565,7 +451,7 @@ gap: 2px;
 .documentos{
     display: flex;
     flex-direction: column;
-    width: 84%;
+    width: 83%;
 }
 
 .hr{
@@ -576,12 +462,134 @@ gap: 2px;
 
 
 .display { 
-       width: 85%;
-    left: 15px;
+    width: 50%;
+    
+    top: 100%;   
+    left: 25%;
     z-index: 1;
     background-color: rgb(234, 222, 222);
     border-radius: 20px;
+    max-width:550px;
+    
+    
 
+}
+
+.display h2 {
+margin-left: 10px;
+}
+
+}
+
+
+
+
+
+@media screen and (min-width:1px )and (max-width: 800px) {
+    
+    
+
+ body{
+    
+background:linear-gradient(rgb(177, 232, 26) , rgb(225, 139, 54));
+
+
+}
+
+
+main{
+    
+margin-left: 0;
+}
+
+#fecha_container{
+    
+    width: 100%;
+}
+
+nav{
+    width:100%;
+}
+
+header{
+    
+    width: 98%;
+    margin-left: 5px;
+}
+
+nav ul {
+height: 60px;
+}
+
+.ciudad{
+display: flex;
+flex-direction: column;
+width: 95%;
+margin-left: 5px;
+padding-right: 0;
+gap:0;
+
+}
+
+.ciudad_reloj{
+color: aqua;
+margin-top: -15px;
+
+}
+
+.contenedor_puentes_info{
+display: flex;
+flex-direction: column;
+gap: 2px;
+
+}
+
+#container{
+    width: 100%;
+    margin-left: 5px;
+}
+
+
+.contenedor_puentes{
+    display: flex;
+    flex-direction: column;
+    width: 75.9%;
+    height: 500px;
+    margin-left: 2px;
+    
+
+}
+
+
+.documentos{
+    display: flex;
+    flex-direction: column;
+    width: 98%;
+    margin-left: 5px;
+    padding-right: 0px;
+}
+
+.hr{
+    display: none;
+
+}
+
+
+
+.display { 
+    width: 98%;
+    
+    top: 100%;   
+    left: 5px;
+    z-index: 1;
+    background-color: rgb(234, 222, 222);
+    border-radius: 20px;   
+    
+}
+
+.boton_camara{
+    
+    top: 10px;
 }
 
 .display h2 {
@@ -590,22 +598,5 @@ margin-left: 10px;
 
 
 
-#comentarios_seccion{
-
-    width: 470px;
-    margin-left: 20px;
-background-color: rgb(202, 232, 113);
-border-radius: 15px;
-}
-
-#comentarios_seccion li{
-background-color: antiquewhite;
-border-radius: 20px;
-width: 420px;
-margin-left: -15px;
-}
-
-
-
 } 
-    
+
