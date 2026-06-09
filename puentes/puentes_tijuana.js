@@ -88,7 +88,7 @@ const main = document.getElementById('container');
 
           const displayDiv= document.createElement('div');
           displayDiv.classList.add('boton_camara');
-          displayDiv.innerHTML= ` <img src='/assets/car.png' class='logo3'>Camara</img>`
+          displayDiv.innerHTML= ` <img src='/assets/car.png' class='logo3'>Info</img>`
                   
            displayDiv.addEventListener('click', (e) =>{ 
               
