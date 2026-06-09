@@ -4,8 +4,7 @@ async function getCountriesAndDisplay() {
 const main = document.getElementById('container');
 
     try {
-        
-       const response = await fetch('/api/fetch_puentes');
+        const response = await fetch('https://bwt.cbp.gov/api/waittimes'); // ✅ Use your local proxy URL
         
         if (!response.ok) {
             throw new Error('Error de red: ' + response.statusText);
@@ -31,30 +30,36 @@ const main = document.getElementById('container');
          "Stanton DCL":"https://www.youtube.com/embed/RVXhhbkBGbI?si=jFWMkkRFU7Gei24h",
          "Santa Teresa": "https://www.youtube.com/embed/IcvugJWPXz8"
                };
-               
-               
-                const linksNorte = { 
+
+
+               const linkNorte = { 
        "Paso Del Norte (PDN)": "https://www.youtube.com/embed/0Pg3S6s76IE?si=njJpiY3oBuuvOxn9",
         "Bridge of the Americas (BOTA)": "https://www.youtube.com/embed/mp3RS0y77tY?si=0Xg1SeWZPql_o1Yj",
         "Ysleta": "https://www.youtube.com/embed/o5h9RB7qwY8?si=vB-BFL4OA8Y6OGtA",
         "Stanton DCL": "https://www.youtube.com/embed/CYhISA_wFQ8?si=x1YIV4rgUt3lzkkJ"
  };
-               
+
+            
+            const alturas = {
+         "Bridge of the Americas (BOTA)": "700px",
+         "Paso Del Norte (PDN)": "800px",
+         "Ysleta": "900px",
+         "Santa Teresa": "1000px"
+               };
 
                 
-        const ElPasoBorders = data.filter(port => port.port_name === 'El Paso' && port.crossing_name !== '');
+        const ElPasoBorders = data.filter(port => port.port_name === 'El Paso' && port.crossing_name !=='');
         const horaActualizacion = data.find(port => port.crossing_name =='Paso Del Norte (PDN)');
 
-        const actualizacion = horaActualizacion?.passenger_vehicle_lanes?.standard_lanes?.update_time || 'Esperando actualización'
+        const actualizacion = horaActualizacion?.passenger_vehicle_lanes?.standard_lanes?.update_time || 'Esperando Actualizacion';
         const horaLimpia = actualizacion?.slice(3, -4);
-        
 
 
          //Console logs importantes para debuggear
 
-         //console.log(ElPasoBorders);
-
-        console.log(horaLimpia);
+         console.log(ElPasoBorders);        
+         //console.log(actualizacion); kt
+        //console.log(actualizacion);
          
          ElPasoBorders.forEach (port => {
 
@@ -80,63 +85,59 @@ const main = document.getElementById('container');
           contenedorPuentes.id = 'contenedor_puentes_info'
 
           //Hora del dia
+          setInterval( ()=> {
+            const horaDisplay = document.getElementById('hora');
+
+           const hora = new Date();
+          const horaFormat = hora.toLocaleString('es-MX',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+
+          horaDisplay.innerText= `Hora: ${horaFormat}`;
+
+          },1000)
           
-          if(horaDisplay) {
-              
-            setInterval( ()=> {
-             const horaDisplay = document.getElementById('hora');
-
-             const hora = new Date();
-             const horaFormat = hora.toLocaleString('en-EN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-
-             horaDisplay.innerText= `Hora: ${horaFormat}`;
-
-          },1000);
-          
-            }
 
           //contenedor donde va el boton para abrir el contenedor 
           // donde va el video youtube detials
 
           const displayDiv= document.createElement('div');
           displayDiv.classList.add('boton_camara');
-          displayDiv.innerHTML= ` <img src="/assets/car.png" class='logo3'>Camara</img>`
+          displayDiv.innerHTML= ` <img src='/assets/car.png' class='logo3'>Camara</img>`
                   
           displayDiv.addEventListener('click', (e) =>{ 
-              
-              const blur_bg = document.querySelector('main');
-              
-              
-              const rect = e.currentTarget.getBoundingClientRect();
-              
-           // Esto posiciona el modal justo debajo del botón que clickeaste
-           // sumando window.scrollY para que funcione aunque hayas hecho scroll
+
+          const body = document.querySelector('main');
+         
+            const rect = e.currentTarget.getBoundingClientRect();
+
+    // Esto posiciona el modal justo debajo del botón que clickeaste
+    // sumando window.scrollY para que funcione aunque hayas hecho scroll
     
-           display.style.top = `${rect.top + window.scrollY + 40}px`;
-           
-              display.classList.toggle('hidden'); 
-              blur_bg.classList.toggle('show');
+    display.style.top = `${rect.top + window.scrollY + 40}px`; 
+
+            
+              display.classList.toggle('hidden');         
+              body.classList.toggle('show');
+          
 
               display.innerHTML= `
               
           <div id='boton_cerrar_display'>
-                 <h2>Cámara en vivo</h2><hr>
+                 <h2>Camara en vivo</h2><hr>
                  <p class='hora' id='hora'></p>
                  <p class='boton_cerrar_display' id='boton_cerrar_display'>X</p>
 
             </div> 
-               <iframe width="401" height="315" src="${videoSur}"> </iframe>
-               <iframe width="401" height="315" src="${videoNorte}"> </iframe>
-               
-               
+
+             
+               <iframe width="500" height="315" src="${videoSur}"> </iframe>
+               <iframe width="500" height="315" src="${videoNorte}"> </iframe>
+
+           
                `;
 
                 const cerrar_display_boton = document.getElementById('boton_cerrar_display');
                 cerrar_display_boton.addEventListener('click', (e)=> {
-                    
                    display.classList.toggle('hidden');
-                   blur_bg.classList.toggle('show');
-                   
                 });
 
               });
@@ -150,7 +151,8 @@ const main = document.getElementById('container');
 
            //Link a el video del puente en vivo
            const videoSur =linksSur[portName];
-           const videoNorte =linksNorte[portName];
+           const videoNorte = linkNorte[portName];
+           
 
 
            //Delay time y numero de lineas avbiertas para peatones
@@ -205,7 +207,7 @@ const main = document.getElementById('container');
            `
          <div class='informacion'>
 
-            <img src="/assets/3d-car.png" class='icono'> 
+            <img src='assets/3d-car.png' class='icono'> 
             <div class='letras'>
             <p>${totalDelayFortmat} min  
             <p class='lineas_abiertas'>Lineas abiertas : ${totalLanes}</p> 
@@ -218,7 +220,7 @@ const main = document.getElementById('container');
 
         <div class='informacion'>
 
-              <img src="/assets/Sentri_logo.svg.png" class='icono'> 
+              <img src='assets/Sentri_logo.svg.png' class='icono'> 
               <div class='letras'>
               <p>${sentrylanes_delay} min  
               <p class='lineas_abiertas'>Lineas abiertas : ${sentryLanes}</p>
@@ -231,7 +233,7 @@ const main = document.getElementById('container');
         <div class='informacion'>
 
             
-             <img class='logo4' src="/assets/walk.png"> 
+             <img class='logo4' src='assets/walk.png'> 
              <div class='letras'>
              <p> ${pedestrianDelay} min </p>
              <p class='lineas_abiertas'>  Lineas abiertas : ${pedestrianLanes}</p> 
@@ -254,8 +256,8 @@ const main = document.getElementById('container');
 
       
          
-        /*const reloj = document.getElementById('reloj');
-        reloj.innerHTML = `(Ultima actualización: ${horaLimpia})`;*/
+        const reloj = document.getElementById('reloj');
+        reloj.innerHTML = `(Ultima actualización: ${horaLimpia})`;
 
         
         
@@ -265,7 +267,7 @@ const main = document.getElementById('container');
     } catch (error) {
         console.error('Hubo un problema:', error);
         
-        main.innerHTML = 'No se pudieron cargar los datos de los puentes.';
+        main.innerHTML = 'No se pudieron cargar los datos de los países.';
     }
 }
 
@@ -285,7 +287,10 @@ const fecha = document.getElementById('fecha');
 fecha.innerText = fechaTexto;
 
 
-//funcion entrada body
+
+//Funcion de entrada del body
+
+
 
 document.addEventListener('DOMContentLoaded',() =>{
 
@@ -295,8 +300,3 @@ mainPage.classList.remove('body');
     }, 700); 
 
 })
-
-
-
-
-
