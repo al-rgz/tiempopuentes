@@ -90,28 +90,44 @@ const main = document.getElementById('container');
           displayDiv.classList.add('boton_camara');
           displayDiv.innerHTML= ` <img src='/assets/car.png' class='logo3'>Camara</img>`
                   
-          displayDiv.addEventListener('click', (e) =>{ 
+           displayDiv.addEventListener('click', (e) =>{ 
+              
+              const blur_bg = document.querySelector('main');
+              
+              
+              const rect = e.currentTarget.getBoundingClientRect();
+              
+           // Esto posiciona el modal justo debajo del botón que clickeaste
+           // sumando window.scrollY para que funcione aunque hayas hecho scroll
+    
+           display.style.top = `${rect.top + window.scrollY + 40}px`;
+           
               display.classList.toggle('hidden'); 
+              blur_bg.classList.toggle('show');
 
               display.innerHTML= `
               
           <div id='boton_cerrar_display'>
-                 <h2>Camara en vivo</h2><hr>
+                 <h2>Cámara en vivo</h2><hr>
                  <p class='hora' id='hora'></p>
                  <p class='boton_cerrar_display' id='boton_cerrar_display'>X</p>
 
             </div> 
-               <p> ${videoSur} </p>`;
+               <p>${videoSur} </p>
+               
+               
+               
+               `;
 
-                 const cerrar_display_boton = document.getElementById('boton_cerrar_display');
+                const cerrar_display_boton = document.getElementById('boton_cerrar_display');
                 cerrar_display_boton.addEventListener('click', (e)=> {
                     
                    display.classList.toggle('hidden');
                    blur_bg.classList.toggle('show');
+                   
                 });
 
               });
-          
           
 
           const portName = port?.crossing_name || 'San Ysidro'; 
