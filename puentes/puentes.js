@@ -130,14 +130,13 @@ const main = document.getElementById('container');
 
              
                <iframe width="500" height="315" src="${videoSur}"> </iframe>
-               <iframe width="500" height="315" src="${videoNorte}"> </iframe>
+               <iframe width="500" height="315" src="${videoNorte}"> </iframe>  `;               
 
-           
-               `;
-
-                const cerrar_display_boton = document.getElementById('boton_cerrar_display');
+                 const cerrar_display_boton = document.getElementById('boton_cerrar_display');
                 cerrar_display_boton.addEventListener('click', (e)=> {
+                    
                    display.classList.toggle('hidden');
+                   blur_bg.classList.toggle('show');
                 });
 
               });
