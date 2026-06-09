@@ -4,7 +4,7 @@ async function getCountriesAndDisplay() {
 const main = document.getElementById('container');
 
     try {
-        const response = await fetch('https://corsproxy.io/?https://bwt.cbp.gov/api/waittimes'); // ✅ Use your local proxy URL
+        const response = await fetch('/api/fetch_puentes'); // ✅ Use your local proxy URL
         
         if (!response.ok) {
             throw new Error('Error de red: ' + response.statusText);
