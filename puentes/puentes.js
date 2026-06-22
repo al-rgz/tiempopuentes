@@ -143,7 +143,9 @@ const main = document.getElementById('container');
 
             </div> 
                <iframe  src="${videoSur}"> </iframe>
-               <iframe  src="${videoNorte}"> </iframe>
+               <iframe  src="${videoNorte}"> </iframe>              
+                
+               
                
                
                `;
@@ -166,8 +168,7 @@ const main = document.getElementById('container');
 
            //Link a el video del puente en vivo
            const videoSur =linksSur[portName];
-           const videoNorte = linkNorte[portName];
-           
+           const videoNorte = linkNorte[portName];          
 
 
            //Delay time y numero de lineas avbiertas para peatones
@@ -204,9 +205,11 @@ const main = document.getElementById('container');
 
           const totalDelayFortmat = Math.floor(totalDelay);
 
-          //Actualizacion de informacion de puentes
-           //const actualizacion = 
-
+          //precio local   
+           
+           const carro = carros[portName] ;
+           const moto = motos[portName]
+           const peaton = peatones[portName]
           
 
           titulo.innerHTML = 
