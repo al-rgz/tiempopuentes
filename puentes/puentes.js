@@ -40,12 +40,28 @@ const main = document.getElementById('container');
  };
 
             
-            const alturas = {
-         "Bridge of the Americas (BOTA)": "700px",
-         "Paso Del Norte (PDN)": "800px",
-         "Ysleta": "900px",
-         "Santa Teresa": "1000px"
-               };
+        //Objetos para precios de cobro en los puentes
+
+        const carros = {
+         "Bridge of the Americas (BOTA)": "gratis",
+         "Paso Del Norte (PDN)": "41 pesos",
+         "Stanton DCL": "SENTRI",
+         "Ysleta": "41 pesos",
+             };
+
+          const peatones = {
+         "Bridge of the Americas (BOTA)": "gratis",
+         "Paso Del Norte (PDN)": "6 pesos",
+         "Stanton DCL": "",
+         "Ysleta": "6 pesos",
+             };
+             
+             const motos = {
+         "Bridge of the Americas (BOTA)": "gratis",
+         "Paso Del Norte (PDN)": "15 pesos",
+         "Stanton DCL": "SENTRI",
+         "Ysleta": "15 pesos",
+             };
 
                 
         const ElPasoBorders = data.filter(port => port.port_name === 'El Paso' && port.crossing_name !=='');
