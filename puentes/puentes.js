@@ -126,8 +126,8 @@ const main = document.getElementById('container');
                  <p class='boton_cerrar_display' id='boton_cerrar_display'>X</p>
 
             </div> 
-               <iframe width="397" height="315" src="${videoSur}"> </iframe>
-               <iframe width="397" height="315" src="${videoNorte}"> </iframe>
+               <iframe  src="${videoSur}"> </iframe>
+               <iframe  src="${videoNorte}"> </iframe>
                
                
                `;

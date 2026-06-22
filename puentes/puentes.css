@@ -337,6 +337,10 @@ background: rgb(84, 81, 81);
 transition: all ease 200ms;
 }
 
+iframe{
+    width: 100%;
+    height: 350px;
+}
 
 #fecha_container{
 width:100%;
