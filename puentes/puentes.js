@@ -238,17 +238,17 @@ const main = document.getElementById('container');
 
           let totalDelayFormat;
 
-          if (carDelayFormat === 0){
+          if (carDelay === '0'){
 
-            totalDelayFormat = readyLaneDelayFormat
+            totalDelayFormat = readylane_delay;
             
-          }  else if (readyLaneDelayFormat === 0) {
+          }  else if (readylane_delay === '0') {
 
-              totalDelayFormat = carDelayFormat
+              totalDelayFormat = carDelay
 
           } else {
             
-            totalDelayFormat = (carDelayFormat+readyLaneDelayFormat)/2;
+            totalDelayFormat = (carDelay+readylane_delay)/2;
           }
 
 
