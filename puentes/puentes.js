@@ -229,6 +229,30 @@ const main = document.getElementById('container');
 
            const readylanesFormat = parseFloat(readylanes);
            const readyLaneDelayFormat = parseFloat (readylane_delay);
+
+
+
+           // If else statement para declara el valor de totalDelayFromat
+           //Asi si la api aroja un 0 en un tiempo de cruce usa el valor de 
+           //standar lines or sentry lanes o la suma de las dos.
+
+          let totalDelayFormat;
+
+          if (carDelayFormat === '0'){
+
+            totalDelayFormat = readyLaneDelayFormat
+            
+          }  else if (readyLaneDelayFormat === '0') {
+
+              totalDelayFormat = carDelayFormat
+
+          } else {
+            
+            totalDelayFormat = (carDelayFormat+readyLaneDelayFormat)/2;
+          }
+
+
+
            
           //Sentry lane
 
@@ -242,7 +266,7 @@ const main = document.getElementById('container');
 
           //Suma del delay de las lineas regulares y las ready lanes
 
-          const totalDelayFormat = Math.floor(totalDelay);
+          totalDelayFormat = Math.floor(totalDelay);
 
           //precio local   
            
@@ -266,7 +290,7 @@ const main = document.getElementById('container');
 
             <img src='assets/3d-car.png' class='icono'> 
             <div class='letras'>
-            <p>${carDelayFormat} min  
+            <p>${totalDelayFormat} min  
             <p class='lineas_abiertas'>Lineas abiertas : ${totalLanes}</p> 
             </div>
 
@@ -315,7 +339,7 @@ const main = document.getElementById('container');
         // Funcion para mostrar la hora en que se actualizo la infomacion de los puentes
 
         const reloj = document.getElementById('reloj');
-        /*reloj.innerHTML = `(Ultima actualización: ${horaLimpia})`;*/
+        /*reloj.innerHTML = `Ultima actualización: ${horaLimpia}`;*/
 
         
         
