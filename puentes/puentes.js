@@ -227,46 +227,46 @@ const main = document.getElementById('container');
           const readylanes = port?.passenger_vehicle_lanes?.ready_lanes?.lanes_open || '0';
           const readylane_delay=port?.passenger_vehicle_lanes?.ready_lanes?.delay_minutes || '0';
 
-           const readylanesFormat = parseFloat(readylanes);
-           const readyLaneDelayFormat = parseFloat (readylane_delay);
+          const readylanesFormat = parseFloat(readylanes);
+          const readyLaneDelayFormat = parseFloat (readylane_delay);
 
+           //Sentry lane
+
+          const sentryLanes = port?.passenger_vehicle_lanes?.NEXUS_SENTRI_lanes?.lanes_open || '0';
+          const sentrylanes_delay = port?.passenger_vehicle_lanes?.NEXUS_SENTRI_lanes?.delay_minutes || '0';
 
 
            // If else statement para declara el valor de totalDelayFromat
            //Asi si la api aroja un 0 en un tiempo de cruce usa el valor de 
            //standar lines or sentry lanes o la suma de las dos.
 
-          let totalDelayFormat;
+            let totalDelayFormat;
 
-          if (carDelay === '0'){
+          if (carDelayFormat === 0){
 
-            totalDelayFormat = readylane_delay;
+            totalDelayFormat = readyLaneDelayFormat;
             
-          }  else if (readylane_delay === '0') {
+          }  else if (readyLaneDelayFormat === 0) {
 
-              totalDelayFormat = carDelay
+              totalDelayFormat = carDelayFormat;
 
           } else {
             
-            totalDelayFormat = (carDelay+readylane_delay)/2;
+            totalDelayFormat = (carDelayFormat + readyLaneDelayFormat)/2;
           }
 
 
-
            
-          //Sentry lane
+          
 
-          const sentryLanes = port?.passenger_vehicle_lanes?.NEXUS_SENTRI_lanes?.lanes_open || '0';
-          const sentrylanes_delay = port?.passenger_vehicle_lanes?.NEXUS_SENTRI_lanes?.delay_minutes || '0';
-
-          //Regular lanes + ready lanes
+          //Suma de Regular lanes + ready lanes (lineas abiertas y delays)
 
           const totalLanes = carLanesFormat + readylanesFormat;
           const totalDelay = (carDelayFormat + readyLaneDelayFormat)/2;
 
-          //Suma del delay de las lineas regulares y las ready lanes
+          //Suma del delay de las lineas regulares y las ready lanes formateado
 
-          totalDelayFormat = Math.floor(totalDelay);
+          //totalDelayFormat = Math.floor(totalDelay);
 
           //precio local   
            
