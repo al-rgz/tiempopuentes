@@ -238,11 +238,11 @@ const main = document.getElementById('container');
 
           let totalDelayFormat;
 
-          if (carDelayFormat === '0'){
+          if (carDelayFormat === 0){
 
             totalDelayFormat = readyLaneDelayFormat
             
-          }  else if (readyLaneDelayFormat === '0') {
+          }  else if (readyLaneDelayFormat === 0) {
 
               totalDelayFormat = carDelayFormat
 
