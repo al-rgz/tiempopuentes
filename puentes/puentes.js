@@ -129,7 +129,7 @@ const main = document.getElementById('container');
            // Esto posiciona el modal justo debajo del botón que clickeaste
            // sumando window.scrollY para que funcione aunque hayas hecho scroll
     
-           display.style.top = `${rect.top + window.scrollY + 40}px`;
+           display.style.top = `${rect.top + window.scrollY + 20}px`;
            
               display.classList.toggle('hidden'); 
               blur_bg.classList.toggle('show');
@@ -214,11 +214,11 @@ const main = document.getElementById('container');
           const pedestrianDelay = port?.pedestrian_lanes?.standard_lanes?.delay_minutes || '0';
           const pedestrianLanes = port?.pedestrian_lanes?.standard_lanes?.lanes_open || '0';
 
-          //Delay time y numero de lineas abiertas para carros
+          //Standar Lanes
           const carDelay = port?.passenger_vehicle_lanes?.standard_lanes?.delay_minutes || '0';       
           const carLanes = port?.passenger_vehicle_lanes?.standard_lanes?.lanes_open || '0';
              
-            //Variables formateadas de numero de lineas y delay en lineas
+            //Variables formateadas de numero de lineas y delay en Standar lineas
            const carLanesFormat = parseFloat(carLanes);
            const carDelayFormat = parseFloat(carDelay);
           
@@ -242,7 +242,7 @@ const main = document.getElementById('container');
 
           //Suma del delay de las lineas regulares y las ready lanes
 
-          const totalDelayFortmat = Math.floor(totalDelay);
+          const totalDelayFormat = Math.floor(totalDelay);
 
           //precio local   
            
@@ -266,7 +266,7 @@ const main = document.getElementById('container');
 
             <img src='assets/3d-car.png' class='icono'> 
             <div class='letras'>
-            <p>${totalDelayFortmat} min  
+            <p>${carDelayFormat} min  
             <p class='lineas_abiertas'>Lineas abiertas : ${totalLanes}</p> 
             </div>
 
@@ -312,9 +312,10 @@ const main = document.getElementById('container');
          });
 
       
-         
+        // Funcion para mostrar la hora en que se actualizo la infomacion de los puentes
+
         const reloj = document.getElementById('reloj');
-        reloj.innerHTML = `(Ultima actualización: ${horaLimpia})`;
+        /*reloj.innerHTML = `(Ultima actualización: ${horaLimpia})`;*/
 
         
         
