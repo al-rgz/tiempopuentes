@@ -80,7 +80,7 @@ color: aqua;
 
 }
 
-ul li:hover{
+.nav li:hover{
 background-color: rgb(84, 110, 225);
 transition: all ease 500ms;
 border-radius: 15px;
