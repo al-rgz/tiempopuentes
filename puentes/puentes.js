@@ -58,9 +58,9 @@ const main = document.getElementById('container');
              
              const motos = {
          "Bridge of the Americas (BOTA)": "gratis",
-         "Paso Del Norte (PDN)": "15 pesos",
+         "Paso Del Norte (PDN)": "21 pesos",
          "Stanton DCL": "SENTRI",
-         "Ysleta": "15 pesos",
+         "Ysleta": "21 pesos",
              };
 
                 
@@ -117,7 +117,7 @@ const main = document.getElementById('container');
 
           const displayDiv= document.createElement('div');
           displayDiv.classList.add('boton_camara');
-          displayDiv.innerHTML= ` <img src='/assets/car.png' class='logo3'>Camara</img>`
+          displayDiv.innerHTML= ` <img src='/assets/car.png' class='logo3'>Cámara</img>`
                   
            displayDiv.addEventListener('click', (e) =>{ 
               
@@ -143,8 +143,24 @@ const main = document.getElementById('container');
 
             </div> 
                <iframe  src="${videoSur}"> </iframe>
-               <iframe  src="${videoNorte}"> </iframe>              
-                
+               <iframe  src="${videoNorte}"> </iframe>  
+               
+               <ul class= "lista_precios" id="lista_precios">              
+
+                <li class="">
+                 Precios de cruce
+                 <img class="flecha" id="flecha" src="/assets/arrow-right.png">
+
+                <span class ="hidden_precio">
+
+                 <p> <img src="/assets/auto (1).png"> Carros: ${carro}</p>
+                 <p> <img src="/assets/moto.png"> Motos: ${moto}</p>
+                 <p> <img src="/assets/peatonal.png"> Peatones: ${peaton}</p>
+                 </span>
+
+               </li>
+
+               </ul>                  
                
                
                
@@ -157,6 +173,29 @@ const main = document.getElementById('container');
                    blur_bg.classList.toggle('show');
                    
                 });
+
+                   //Funcion accordion
+
+                const ul_accordion = document.getElementById ('lista_precios');
+
+                function accordion (e) {
+ 
+
+                    if(e.target.tagName === 'IMG'){
+
+                        const li = e.target.closest('LI');
+                        const span = li.querySelector('span');
+
+                        span.classList.toggle('hidden_precio')
+
+                        e.target.classList.toggle('flecha_ul_click');
+                    }      
+
+                    } 
+
+                ul_accordion.addEventListener('click', accordion);
+
+
 
               });
           
