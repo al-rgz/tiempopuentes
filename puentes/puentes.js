@@ -44,23 +44,23 @@ const main = document.getElementById('container');
 
         const carros = {
          "Bridge of the Americas (BOTA)": "gratis",
-         "Paso Del Norte (PDN)": "41 pesos",
+         "Paso Del Norte (PDN)": "41 pesos | 2.50 USD",
          "Stanton DCL": "SENTRI",
-         "Ysleta": "41 pesos",
+         "Ysleta": "41 pesos | 2.50 USD",
              };
 
           const peatones = {
          "Bridge of the Americas (BOTA)": "gratis",
-         "Paso Del Norte (PDN)": "6 pesos",
+         "Paso Del Norte (PDN)": "6 pesos | 0.40 USD",
          "Stanton DCL": "",
-         "Ysleta": "6 pesos",
+         "Ysleta": "10 pesos | 0.60 USD",
              };
              
              const motos = {
          "Bridge of the Americas (BOTA)": "gratis",
-         "Paso Del Norte (PDN)": "21 pesos",
+         "Paso Del Norte (PDN)": "21 pesos | 1.30 USD",
          "Stanton DCL": "SENTRI",
-         "Ysleta": "21 pesos",
+         "Ysleta": "21 pesos | 1.30 USD",
              };
 
                 
