@@ -433,6 +433,7 @@ height: 35px;
 .flecha{
     position: absolute;  
     right: 100px;
+    top:5px;
 width: 25px;
 height: 25px;
 rotate: 90deg;
