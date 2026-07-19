@@ -414,11 +414,14 @@ height: 50px;
  
  }
 
- 
+ .lista_precios li{
+font-size: large;
+
+ }
 
 
 
- .lista_precios p,li {
+ .lista_precios p {
 width:auto ;
 background-color: aliceblue;
 border: black solid 1px;
