@@ -414,9 +414,11 @@ height: 50px;
  
  }
 
+ 
 
 
- .lista_precios p {
+
+ .lista_precios p,li {
 width:auto ;
 background-color: aliceblue;
 border: black solid 1px;
