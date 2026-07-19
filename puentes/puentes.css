@@ -397,7 +397,7 @@ height: 50px;
 .lista_precios {
     
      border-radius: 20px;
-     margin:20px;
+     margin:2px;
       width: 100%;
      
      cursor: pointer;
@@ -407,7 +407,7 @@ height: 50px;
     font-weight: bolder;    
     padding-bottom: 5px;
     border-radius: 15px;    
-    left: 5px;
+    left: 0px;
     position: relative;
     
     
