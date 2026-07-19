@@ -148,7 +148,7 @@ const main = document.getElementById('container');
                <ul class= "lista_precios" id="lista_precios">              
 
                 <li class="">
-                 Precios de cruce
+                 <h2>Precios de cruce</h2>
                  <img class="flecha" id="flecha" src="/assets/arrow-right.png">
 
                 <span class ="hidden_precio">
