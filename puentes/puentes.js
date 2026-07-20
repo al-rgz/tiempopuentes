@@ -160,7 +160,7 @@ const main = document.getElementById('container');
 
                </li>
 
-               </ul><br>              
+               </ul>          
                
                
                
